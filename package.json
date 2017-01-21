@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/princedc/AlexaServer/issues"
   },
-  "homepage": "https://github.com/princedc/AlexaServer#readme"
+  "homepage": "https://github.com/princedc/AlexaServer#readme",
+  "dependencies": {
+    "alexa-app-server": "^2.3.1"
+  }
 }
