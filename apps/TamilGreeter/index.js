@@ -17,7 +17,7 @@ app.error = function( exception, request, response ) {
 	response.say( 'Sorry an error occured ' + error.message);
 };
 
-app.intent('sayNumber',
+app.intent('WishInTamil',
   {
     "slots":{"USERNAME":"AMAZON.LITERAL"}
 	,"utterances":[ 
