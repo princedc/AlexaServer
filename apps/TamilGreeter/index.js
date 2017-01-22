@@ -6,7 +6,7 @@ var app = new alexa.app( 'tamilgreeter' );
 
 
 app.launch( function( request, response ) {
-	response.say( 'Welcome to your tamil greeter. Please tell your name.' ).reprompt( 'Can you please tell your name ' ).shouldEndSession( false );
+	response.say( 'Welcome to your tamil greeter. Please tell your name.' ).reprompt( 'Can you please tell your name.').shouldEndSession( false );
 } );
 
 
