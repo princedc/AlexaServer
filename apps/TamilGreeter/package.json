@@ -1,0 +1,22 @@
+{
+  "name": "tamilgreeter",
+  "version": "1.0.0",
+  "description": "Tamil Greeter ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/princedc/TamilGreeter.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/princedc/TamilGreeter/issues"
+  },
+  "homepage": "https://github.com/princedc/TamilGreeter#readme",
+  "dependencies": {
+    "alexa-app": "^2.4.0"
+  }
+}
