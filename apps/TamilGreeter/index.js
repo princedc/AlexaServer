@@ -6,7 +6,7 @@ var app = new alexa.app( 'tamilgreeter' );
 
 
 app.launch( function( request, response ) {
-	response.say( 'Welcome to your test skill' ).reprompt( 'Way to go. You got it to run. Bad ass.' ).shouldEndSession( false );
+	response.say( 'Welcome to your tamil greeter. Please tell your name.' ).reprompt( 'Can you please tell your name ' ).shouldEndSession( false );
 } );
 
 
@@ -19,16 +19,15 @@ app.error = function( exception, request, response ) {
 
 app.intent('sayNumber',
   {
-    "slots":{"number":"NUMBER"}
+    "slots":{"USERNAME":"AMAZON.LITERAL"}
 	,"utterances":[ 
-		"say the number {1-100|number}",
-		"give me the number {1-100|number}",
-		"tell me the number {1-100|number}",
-		"I want to hear you say the number {1-100|number}"]
+		"My Name is {slot value|USERNAME}",
+		"Yen Peruu {slot value|USERNAME}"
+		]
   },
   function(request,response) {
-    var number = request.slot('number');
-    response.say("You asked for the number "+number);
+    var username = request.slot('USERNAME');
+    response.say("Vanakkam "+ username);
   }
 );
 
