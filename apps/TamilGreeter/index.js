@@ -10,15 +10,15 @@ app.launch( function( request, response ) {
 	response.say( 'Welcome to your tamil greeter. Please tell your name.' ).reprompt( 'Can you please tell your name.').shouldEndSession( false );
 } );
 
-var getTodaysODBMP3 = function(req,res) {
+var getTodaysODBMP3 = function(alexarequest,alexaresponse) {
 
 var options = {
   host: 'odb.org',
   port: 80,
   path: '/'
 };
-
-var res = http.get(options, function(res) {
+var returnData;
+var req = http.get(options, function(res) {
 var body = '';
   console.log("Got response: " + res.statusCode);
   //console.log(res.body);
@@ -26,31 +26,45 @@ var body = '';
    body += data;
 	});
 res.on('end', function() {
-//    console.log(body);
+    console.log(body);
   //  var audioSRC = process(body);
     //var ssml = '<audio src="' + http://dzxuyknqkmi1e.cloudfront.net/odb/2017/01/odb-01-27-17.mp3+ '"/>';
     //res.say(ssml); 
     //var username = request.slot('USERNAME');
     //res.say("Vanakkam "+ username + " "  + ssml);
-    return process(body);
+    //returnData = process(body);
+     var username = alexarequest.slot('USERNAME');
+    alexaresponse.say(processMessage(body));
+    alexaresponse.send();
   });
 }).on('error', function(e) {
   console.log("Got error: " + e.message);
 	});
 
-res.end();
+req.end();
+
+//return returnData;
 
 }
 
+
+var processMessage = function(body){
+   var message;
+   var match = /<div\s+class="post-content">([\s\S]*?)<div\s+class="tweetable-content([\s\S]*?)<\/div>([\s\S]*?)<\/div>/gim;
+   var meditationContent = match.exec(body);
+    message = meditationContent[1].trim() + '</p>';
+    message = message + console.log(meditationContent[3]);       
+    return message;
+}
 
 
 var process = function(body){
 	var x = /<audio\s+id="(.*?)"\s+src="(.*?)"(.*?)><\/audio>/gi;
 	var myArray = x.exec(body);
-	for( x of myArray){
-		console.log(x);
+	for( match of myArray){
+		console.log(match);
 	}
-	return x[2];
+	return myArray[2];
 }
 
 
@@ -75,11 +89,13 @@ app.intent('WishInTamil',
   function(request,response) {
     var audioSRC = getTodaysODBMP3(request,response);
     //var audioSRC = process(body);
+    console.log('audio :' + audioSRC);
     var ssml = '<audio src="http://dzxuyknqkmi1e.cloudfront.net/odb/2017/01/odb-01-27-17.mp3"/>';
     //res.say(ssml); 
-    var username = request.slot('USERNAME');
+   
+    return false;
     //p(request,response,username,ssml);
-    response.say("Vanakkam "+ username + " "  + ssml);
+    //response.say("Vanakkam "+ username + " "  + audioSRC);
   }
 );
 
