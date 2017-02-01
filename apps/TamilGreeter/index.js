@@ -53,7 +53,7 @@ var processMessage = function(body){
    var match = /<div\s+class="post-content">([\s\S]*?)<div\s+class="tweetable-content([\s\S]*?)<\/div>([\s\S]*?)<\/div>/gim;
    var meditationContent = match.exec(body);
     message = meditationContent[1].trim() + '</p>';
-    message = message + console.log(meditationContent[3]);       
+    message = message + meditationContent[3];       
     return message;
 }
 
