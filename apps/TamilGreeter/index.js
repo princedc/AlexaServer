@@ -37,7 +37,7 @@ res.on('end', function() {
     //alexaresponse.say(processMessage(body));
     //var audiolink = processMessage(body);
     var stream = {
-    "url": "https://princealexaserver.herokuapp.com/alexa/tamilgreeter/odb-02-07-17.mp3",
+    "url": "https://princealexaserver.herokuapp.com/odb-02-07-17.mp3",
     "token": "some_token",
     "offsetInMilliseconds": 0
   };
