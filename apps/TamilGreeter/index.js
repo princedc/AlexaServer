@@ -27,14 +27,22 @@ var body = '';
 	});
 res.on('end', function() {
     console.log(body);
-  //  var audioSRC = process(body);
+    //  var audioSRC = process(body);
     //var ssml = '<audio src="' + http://dzxuyknqkmi1e.cloudfront.net/odb/2017/01/odb-01-27-17.mp3+ '"/>';
     //res.say(ssml); 
     //var username = request.slot('USERNAME');
     //res.say("Vanakkam "+ username + " "  + ssml);
     //returnData = process(body);
      var username = alexarequest.slot('USERNAME');
-    alexaresponse.say(processMessage(body));
+    //alexaresponse.say(processMessage(body));
+    var audiolink = processMessage(body);
+    var stream = {
+    "url": audiolink,
+    "token": "some_token",
+    "offsetInMilliseconds": 0
+  };
+    alexaresponse.audioPlayerPlayStream("ENQUEUE", stream);
+
     alexaresponse.send();
   });
 }).on('error', function(e) {
@@ -49,20 +57,23 @@ req.end();
 
 
 var processMessage = function(body){
-   var message;
-   var match = /<div\s+class="post-content">([\s\S]*?)<div\s+class="tweetable-content([\s\S]*?)<\/div>([\s\S]*?)<\/div>/gim;
-   var meditationContent = match.exec(body);
-    message = meditationContent[1].trim() + '</p>';
-    message = message + meditationContent[3];
-    message = message.replace(/“/g,"");
-    message = message.replace(/<em>/g,"");
-    message = message.replace(/<\/em>/g,"");
-    message = message.replace(/<p>/g,"");
-    message = message.replace(/<\/p>/g,"");
-    message = message.replace(/”/g,"");
-    message = message.replace(/\n/g,"");
-    message = message.replace(/\t/g,"");       
-    return message;
+  //  var message;
+  //  var match = /<div\s+class="post-content">([\s\S]*?)<div\s+class="tweetable-content([\s\S]*?)<\/div>([\s\S]*?)<\/div>/gim;
+  //  var meditationContent = match.exec(body);
+  //   message = meditationContent[1].trim() + '</p>';
+  //   message = message + meditationContent[3];
+  //   message = message.replace(/“/g,"");
+  //   message = message.replace(/<em>/g,"");
+  //   message = message.replace(/<\/em>/g,"");
+  //   message = message.replace(/<p>/g,"");
+  //   message = message.replace(/<\/p>/g,"");
+  //   message = message.replace(/”/g,"");
+  //   message = message.replace(/\n/g,"");
+  //   message = message.replace(/\t/g,"");       
+  //   return message;
+   var match1 = /<audio(.*?)src="(.*?)"(.*?)>/gim;
+   var audioMatch = match1.exec(body);
+   return audioMatch[2];
 }
 
 
