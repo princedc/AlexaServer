@@ -118,9 +118,9 @@ app.intent('WishInTamil',
   }
 );
 
-app.get('/alexa/tamilgreeter/odb-01-27-17.mp3',function(req,res){
-    res.sendFile(path.join(__dirname,  '/odb-01-27-17.mp3'));
-});
+// app.get('/alexa/tamilgreeter/odb-01-27-17.mp3',function(req,res){
+//     res.sendFile(path.join(__dirname,  '/odb-01-27-17.mp3'));
+// });
 
 var p = function(req,res,username,audiotag){
 }
