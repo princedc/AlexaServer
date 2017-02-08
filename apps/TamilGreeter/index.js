@@ -39,6 +39,7 @@ res.on('end', function() {
     var stream = {
     "url": "https://princealexaserver.herokuapp.com/odb-02-07-17.mp3",
     "token": "some_token",
+    "expectedPreviousToken": "some_token",
     "offsetInMilliseconds": 0
   };
     alexaresponse.audioPlayerPlayStream("ENQUEUE", stream);
